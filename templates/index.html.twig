@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+ {% block title%} Liste des Articles{% endblock %} 
+ {% block body %}
+
+ <a class="btn btn-outline-primary" href="{{ path('app_login') }}">Connexion</a>
+ 
+  <table id="articles" class="table table-striped">
+  <thead> <tr> <th>Article</th> <th>Actions</th> </tr> </thead> <tbody>
+  <tr> <td></td> <td> <a href="/article/1" class="btn btn-dark">Détails</a> </td> </tr>
+  </tbody> </table>
+<p>Aucun articles</p>{% endblock %}

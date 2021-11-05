@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Accueil | Tek-Up" %}
+
+{% block body %}
+
+	{% if is_granted('ROLE_ENSEIGNANT') %}
+		<h3 class="mb-3 fw-normal">Mes classes de cours</h3>
+	{% else %}
+		<h3 class="mb-3 fw-normal"> Les formations
+		</h3>
+	{% endif %}
+{% endblock %}
