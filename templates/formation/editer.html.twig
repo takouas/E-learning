@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Editer | " ~ formation.titre  %}
+
+{% block body %}
+	<div class="row">
+		<div class="col-md-6 mx-auto">
+
+			<h3 class="mb-3 fw-normal text-center text-break">
+				Editer la formation
+				{{ formation.titre }}
+					{{ formation.description }}
+						{{ formation.categorie.designation }}
+			</h3>
+			{# formulaire d'édition #}
+			{{ include("formation/_form.html.twig", {"submitButtonText" : "Modifier"}) }}
+			{# end formulaire d'édition #}
+
+			{# boutton annuler #}
+				<button class="btn btn-link mt-3" onclick="window.history.back();"> Annuler</button>
+			{# end boutton annuler #}
+
+		</div>
+	</div>
+
+{% endblock %}

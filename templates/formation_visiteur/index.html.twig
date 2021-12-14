@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Formations" %}
+
+{% block body %}
+
+<script type="text/javascript">
+    function searchFunc()
+    {
+        let filter = document.getElementById('search-input').value.toUpperCase();
+        let key = document.getElementById('key').value;
+        let table = document.getElementById('myTable');
+        let tr = table.getElementsByTagName('tr');
+
+        for (var i = 0; i < tr.length; i++)
+        {
+            j=document.getEl
+            let td = tr[i].getElementsByTagName('td')[key];
+
+ 
+
+            if (td) {
+                let textValue = td.textContent || td.innerHTML;
+
+ 
+
+                if (textValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+</script>
+<table class="tbl-ful">
+    <tr>
+        <td><b style="float:right">Search :</b></td>
+        <td>
+            <input onKeyup="searchFunc()" id="search-input" type="text" placeholder="Search...">
+           <b>Search By :</b>
+            <select id="key">
+                <option value="1">Formation</option>
+				<option value="2">Catégorie</option>
+               
+            </select>
+        </td>
+    </tr>
+</table>
+</div><br>
+
+	<div class="table-responsive">
+		<table  id="myTable"  class="table table-dark table-striped table-responsive-sm caption-top">
+			<caption>
+				Liste des formations
+				
+			</caption>
+
+			<thead>
+				<tr>
+					<th scope="col">id</th>
+					<th scope="col">Formation</th>
+					<th scope="col">Catégorie</th>
+					<th scope="col">Action</th>
+	
+				</tr>
+			</thead>
+
+			<tbody>
+				{% for formation in formations %}
+					<tr>
+						<td>{{ formation.id }}</td>
+						<td>{{ formation.titre }}</td>
+				        <td>{{ formation.categorie.designation }}</td>
+					<td>	<a class="btn btn-outline-primary" href="{{ path('app_registration_etudiant') }}">Commencer la formation</a>	</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+           
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Nouveau cours" %}
+
+{% block body %}
+
+
+	<div class="row">
+		<div class="col-lg-6 col-md-10 mx-auto">
+			<h3 class="mb-3 fw-normal text-center text-break">
+				Créer un nouveau support de cours
+			</h3>
+			{{ include("cours/_form.html.twig") }}
+		</div>
+	</div>
+
+
+{% endblock %}

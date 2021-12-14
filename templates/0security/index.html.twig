@@ -1,0 +1,150 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block head %}
+<style>
+
+</style>
+ 
+    {% endblock %}
+{% block body %}
+
+<form method="POST" class="form-inline my-0 mr-md-auto" action="{{ path('search_results')}}">
+        <input class="form-control mr-sm-2" type="search" placeholder=" title" aria-label="Search ">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search </button>
+    </form>
+<video width="1200" height="600"  controls>
+  <source src="{{asset('media/v.mp4')}}" type="video/mp4">
+</video>
+	<div class="row">
+		<div class="col-lg-1 col-md-1 mx-auto py-1">
+			
+			{% include("security/_modaCl.html.twig") %}
+			
+			{% include("security/_modal.html.twig") %}
+		</div>
+    <main>
+
+        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+               <!-- <div class="overlay-image" style="background-image: url(assets/img/888.jpg);"></div>
+                
+                <div class="carousel-item active">
+                    <div class="container">
+                     <img loading="lazy" width="1200" height="480" src="{{ asset('img/888.jpg') }}" />
+                        <div class="carousel-caption text-start">
+                        
+                            <h1>Le meilleur raccourcisseur d'URL.</h1>
+                            <p>Un raccourcisseur d'URL conçu avec des outils puissants pour vous aider à développer et à protéger votre marque.</p>
+
+                            {% if is_granted('IS_ANONYMOUS') %}
+                                <p><a class="btn btn-lg btn-primary" href="#">Inscription</a></p>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+-->
+            </div>
+        </div>
+<br>
+        <!-- Marketing messaging and featurettes
+        ================================================== -->
+        <!-- Wrap the rest of the page in another container to center all the content. -->
+
+		
+    
+            <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 g-4">
+             {% for formation in formations %}
+      <div class="card card-custom bg-white border-white border-0">
+			<div class="card-custom-img"></div>
+			<div class="card-custom-avatar">
+				<img class="img-fluid" src="{{ asset('img/s5.jpg') }}" alt="Avatar"/>
+			</div>
+			<div class="card-body" style="overflow-y: auto">
+				<h4 class="card-title">{{ formation.titre|u.truncate(20, '...', true) }}</h4>
+				<h6 class="lead small">
+					{{ formation.titre | upper}}
+				</h6>
+				<h6 class="card-subtitle mt-1 mb-2">
+					<figcaption class="blockquote-footer my-0">
+						Créee par
+						
+					</figcaption>
+				</h6>
+				<p class="card-text">
+				
+				</p>
+			</div>
+			<div class="card-footer border-top bg-white">
+			
+				<a class="btn btn-outline-primary" href="{{ path('app_registration_etudiant') }}">Commencer la formation</a>	
+				</small>
+			</div>
+		</div>
+   {% endfor %}
+
+   	</div>
+      
+
+            <hr class="featurette-divider">
+
+
+        </div><!-- /.container -->
+
+        <section class="col col-lg-10 mx-auto mb-5">
+            <div class="card" id="shortenCard">
+                <div class="card-body bg-light">
+                    <form id="shortenForm">
+                        <div class="col">
+                            <div class="input-group">
+                                <input type="text" class="form-control form-control-lg" name="url" id="url" placeholder="Votre adresse à réduire" autocomplete="off" required>
+                                <button type="submit" class="btn btn-lg btn-success" id="btnShortenUrl">Réduire l'URL</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+ <div class="card-footer bg-success text-white">
+            <p class="text-center"> Nom des créateurs ( redirigeant vers leurs Linkedin ) </p>
+            <hr/>
+            <div class="d-flex justify-content-around">
+                
+                <div class="w3-card">
+  <img loading="lazy" width="200" height="200" src="{{ asset('img/houda.jpg') }}" />
+  <div class="w3-container w3-center">
+   <a href="https://www.linkedin.com/in/bouzazi-houda-a4713a125/" class="text-white">Bouzazi Houda</a>
+  </div>
+</div>
+<div class="w3-card">
+  <img loading="lazy" width="200" height="200" src="{{ asset('img/maha.jpg') }}" />
+  <div class="w3-container w3-center">
+ <a href="https://www.linkedin.com/in/maha-rhouma-20a8651ba/" class="text-white">Rhouma Maha</a>
+  </div>
+</div>
+<div class="w3-card">
+  <img loading="lazy" width="200" height="200" src="{{ asset('img/takwa.jpg') }}" />
+  <div class="w3-container w3-center">
+  <a href="https://www.linkedin.com/in/takoua-saadaoui-b776aa175/" class="text-white">Saadaoui Takoua</a>
+  </div>
+</div>
+<div class="w3-card">
+  <img loading="lazy" width="200" height="200" src="{{ asset('img/ikram.jpg') }}" />
+  <div class="w3-container w3-center">
+   <a href="https://www.linkedin.com/in/ikram-chaib-4890541b6/" class="text-white">Chaeib Ikram</a>
+  </div>
+</div>
+            </div>
+        </div>
+        <!-- FOOTER -->
+        <footer class="container">
+            <p>&copy; Pentiminax 2021</p>
+        </footer>
+    </main>
+{% endblock %}
+
+{% block javascripts %}
+ 
+{% endblock %}
