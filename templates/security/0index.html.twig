@@ -1,0 +1,328 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+{% block head %}
+<style>
+
+
+
+</style>
+ 
+    {% endblock %}
+{% block body %}
+  
+	<div style=" background-image: url({{ asset('img/11242.jpg') }});background-size: cover;height: 400px;margin:150 0" >
+  
+      
+      <div style=" width:550px">
+      <h5 style=" color:#211350; padding:50px 15px" > Choisissez votre carrière. <br/> Suivez une formation constituée de projets professionnalisants et <br/> de séances individuelles avec un mentor dédié chaque semaine
+        <br/> Suivez une formation constituée de projets professionnalisants et <br/> de séances individuelles avec un mentor dédié chaque semaine
+       </h5>
+        
+      
+      </div>
+     
+  </div>
+
+
+
+  <!-- Grid container -->
+    <div class="container p-4" style=" color:#211350; margin-top: 100px" >
+    <!--Grid row-->
+    <div class="row">
+      <!--Grid column-->
+      <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+        <h5 class="text-uppercase"> text</h5>
+
+        <p>
+         Choisissez votre carrière. Suivez une formation constituée de projets professionnalisants et de séances individuelles avec un mentor dédié chaque semaine
+          Choisissez votre carrière. Suivez une formation constituée de projets professionnalisants et de séances individuelles avec un mentor dédié chaque semaine
+        </p>
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+
+           <video width="400" height="200"  controls >
+  <source src="{{asset('media/developpy.mp4')}}" type="video/mp4">
+</video>
+
+      </div>
+      <!--Grid column-->
+    </div>
+    <!--Grid row-->
+  </div>
+
+	<div class="row">
+		<div class="col-lg-1 col-md-1 mx-auto py-1">
+
+			{% include("security/_modaCl.html.twig") %}
+
+			{% include("security/_modal.html.twig") %}
+		</div>
+
+
+    <main>
+
+ 	<div style=" background-image: url({{ asset('img/bg-int.jpg') }}); padding:150px 0; " >
+  <h4 style=" float:right;  color:#211350;   padding:20px; box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);" >Choisissez votre carrière.<br/> Suivez une formation constituée de projets professionnalisants <br/> et de séances individuelles avec un mentor dédié chaque semaine</h4>
+  </div>
+<br>
+
+
+		 <br>
+
+        </div><!-- /.container -->
+     <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 g-4">
+             {% for formation in formations %}
+      <div class="card card-custom bg-white border-white border-0">
+			<div class="card-custom-img"></div>
+			<div class="card-custom-avatar">
+				<img class="img-fluid" src="{{ asset('img/s5.jpg') }}" alt="Avatar"/>
+			</div>
+			<div class="card-body" style="overflow-y: auto">
+				<h4 class="card-title">{{ formation.titre|u.truncate(20, '...', true) }}</h4>
+				<h6 class="lead small">
+					{{ formation.titre | upper}}
+				</h6>
+				<h6 class="card-subtitle mt-1 mb-2">
+					<figcaption class="blockquote-footer my-0">
+						Créee par
+
+					</figcaption>
+				</h6>
+				<p class="card-text">
+
+				</p>
+			</div>
+			<div class="card-footer border-top bg-white">
+
+				<a class="btn btn-outline-primary" href="{{ path('app_registration_etudiant') }}">Commencer la formation</a>	
+				</small>
+			</div>
+		</div>
+   {% endfor %}
+ 
+   	</div>
+    <center>
+     	<div div class="card-footer border-top bg-white" style="float:right">
+         
+{{ knp_pagination_render(
+            formations,
+            '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig',
+            {
+                'queryParam1': 'param1 value',
+                'queryParam2': 'param2 value'
+            },
+            {
+                'viewParam1': 'param1 value',
+                'viewParam2': 'param2 value'
+            },
+        ) }}
+    	</div>
+
+</center>
+   
+
+                <!-- Grid container -->
+    <div class="container p-4" style=" margin:100px 0" >
+    <!--Grid row-->
+    <div class="row">
+      <!--Grid column-->
+      <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+        <img src="{{ asset('img/3657984.jpg') }}" alt="" width="300" class="">
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-lg-6 col-md-12 mb-4 mb-md-0" >
+      
+          <h3 class="text" style=" padding:10px" > Choisissez votre carrière. Suivez une formation constituée de projets professionnalisants et de séances individuelles avec un mentor dédié chaque semaine</h3>
+
+        
+       
+      </div>
+      <!--Grid column-->
+    </div>
+    <!--Grid row-->
+  </div>
+         
+
+
+
+       
+
+<div class="container py-5 ">
+    <div class="row mb-4">
+      <div class="col-lg-5">
+        <h2 class="display-4 font-weight-light">Our team</h2>
+        <p class="font-italic text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      </div>
+    </div>
+
+    <div class="row text-center">
+      <!-- Team item-->
+      <div class="col-xl-3 col-sm-6 mb-5">
+        <div class="bg-white rounded shadow-sm py-5 px-4"><img src="{{ asset('img/houda.jpg') }}" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+          <h5 class="mb-0">bouzazi houda</h5><span class="small text-uppercase text-muted">CEO - Founder</span>
+          <ul class="social mb-0 list-inline mt-3">
+            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
+            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>
+            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-instagram"></i></a></li>
+            <li class="list-inline-item"><a href="https://www.linkedin.com/in/bouzazi-houda-a4713a125/" class="social-link"><i class="fa fa-linkedin"></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- End-->
+
+      <!-- Team item-->
+      <div class="col-xl-3 col-sm-6 mb-5">
+        <div class="bg-white rounded shadow-sm py-5 px-4"><img src="{{ asset('img/maha.jpg') }}" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+          <h5 class="mb-0">maha rhouma</h5><span class="small text-uppercase text-muted">CEO - Founder</span>
+          <ul class="social mb-0 list-inline mt-3">
+            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
+            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>
+            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-instagram"></i></a></li>
+            <li class="list-inline-item"><a href="https://www.linkedin.com/in/maha-rhouma-20a8651ba/" class="social-link"><i class="fa fa-linkedin"></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- End-->
+
+      <!-- Team item-->
+      <div class="col-xl-3 col-sm-6 mb-5">
+        <div class="bg-white rounded shadow-sm py-5 px-4"><img src="{{ asset('img/takwa.jpg') }}" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+          <h5 class="mb-0">takoua saadaoui</h5><span class="small text-uppercase text-muted">CEO - Founder</span>
+          <ul class="social mb-0 list-inline mt-3">
+            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
+            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>
+            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-instagram"></i></a></li>
+            <li class="list-inline-item"><a href="https://www.linkedin.com/in/takoua-saadaoui-b776aa175/" class="social-link"><i class="fa fa-linkedin"></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- End-->
+
+      <!-- Team item-->
+      <div class="col-xl-3 col-sm-6 mb-5">
+        <div class="bg-white rounded shadow-sm py-5 px-4"><img src="{{ asset('img/ikram.jpg') }}" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+          <h5 class="mb-0">ikram chaib</h5><span class="small text-uppercase text-muted">CEO - Founder</span>
+          <ul class="social mb-0 list-inline mt-3">
+            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
+            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>
+            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-instagram"></i></a></li>
+            <li class="list-inline-item"><a href="https://www.linkedin.com/in/ikram-chaib-4890541b6/" class="social-link"><i class="fa fa-linkedin"></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- End-->
+
+    </div>
+</div>
+
+
+
+        <!-- *******************************FOOTER***************************************** -->
+        
+               <footer class="text-center text-white " style="background-color: #393e46; ">
+  <!-- Grid container -->
+  <div class="container pt-4">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      <!-- Facebook -->
+      <a
+      class="btn btn-outline-light btn-floating m-1"
+        ><i class="fab fa-facebook-f"></i
+      ></a>
+
+      <!-- Twitter -->
+      <a
+       class="btn btn-outline-light btn-floating m-1"
+        ><i class="fab fa-twitter"></i
+      ></a>
+
+      <!-- Google -->
+      <a
+       class="btn btn-outline-light btn-floating m-1"
+        ><i class="fab fa-google"></i
+      ></a>
+
+      <!-- Instagram -->
+      <a
+       class="btn btn-outline-light btn-floating m-1"
+        ><i class="fab fa-instagram"></i
+      ></a>
+
+      <!-- Linkedin -->
+      <a
+        class="btn btn-outline-light btn-floating m-1"
+        ><i class="fab fa-linkedin"></i
+      ></a>
+      <!-- Github -->
+      <a
+       class="btn btn-outline-light btn-floating m-1"
+        ><i class="fab fa-github"></i
+      ></a>
+    </section>
+    <!-- Section: Social media -->
+  </div>
+  <!-- Grid container -->
+    <div class="container p-4">
+    <!--Grid row-->
+    <div class="row">
+      <!--Grid column-->
+      <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+        <h5 class="text-uppercase">Footer text</h5>
+
+        <p>
+          Choisissez votre carrière. Suivez une formation constituée de projets professionnalisants et de séances individuelles avec un mentor dédié chaque semaine
+          Choisissez votre carrière. Suivez une formation constituée de projets professionnalisants et de séances individuelles avec un mentor dédié chaque semaine Choisissez votre carrière. 
+          
+        </p>
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+      
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Contact
+          </h6>
+          <p><i class="fas fa-home me-3"></i> ariana</p>
+          <p>
+            <i class="fas fa-envelope me-3"></i>
+            tak@gmail.com
+          </p>
+          <p><i class="fas fa-phone me-3"></i>  23 567 88</p>
+          <p><i class="fas fa-print me-3"></i>  23 567 89</p>
+       
+      </div>
+      <!--Grid column-->
+    </div>
+    <!--Grid row-->
+  </div>
+  
+
+
+  <!-- Copyright -->
+  <div class="text-center text-white p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+  
+ 	<p class="mb-2">
+		&copy;
+		{{ 'now'|date('Y') }}
+		&middot; Université Tek-Up GLSI A 2021-2022
+	</p>
+  </div>
+  <!-- Copyright -->
+  
+</footer>
+
+        
+
+    </main>
+    
+{% endblock %}
+
+

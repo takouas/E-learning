@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block title classeDeCours.titre %}
+{% block stylesheets %}
+			{% include('layouts/partials/_stylesheet.html.twig') %}
+			<link rel="stylesheet" href="{{ asset('0css/appp.css') }}">
+			
+			 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+		<script src="https://kit.fontawesome.com/45e38e596f.js" crossorigin="anonymous"></script>
+		
+
+    <link href="{{asset('css/fontawesome-all.css')}}" rel="stylesheet">
+    <link href="{{asset('css/swiper.css')}}" rel="stylesheet">
+	<link href="{{asset('css/magnific-popup.css')}}" rel="stylesheet">
+	<link href="{{asset('css/styles1.css')}}" rel="stylesheet">
+		
+		{% endblock %}
+{% block body %}
+
+	<div class="card bg-c-blue text-white">
+
+		<img src="{{ asset('img/gradients/k.png') }}" style="width:1300px;height:320px;" class="card-img card-img-full">
+
+		<div class="card-img-overlay">
+			<h3 class="card-title text-white">{{ classeDeCours.titre }}</h3>
+			<h6 class="card-subtitle my-2">
+				<figcaption class="blockquote-footer my-0 text-white">
+					Créee par
+					<cite title="Source Title">{{ classeDeCours.enseignant.fullName }}</cite>
+				</figcaption>
+			</h6>
+			<p class="h5 card-text lead text-white">{{ classeDeCours.formation.titre }}</p>
+			<p class="card-text text-white">{{ classeDeCours.description }}</p>
+			<p class="small card-text text-white">Dernière modification,
+				{{ classeDeCours.dateModification|ago(locale='fr') }}
+			</p>
+
+			{% if is_granted('ROLE_ENSEIGNANT') and app.user == classeDeCours.enseignant %}
+
+				<a class="btn btn-outline-light" href="{{ path('app_cours_creer', {'id_classedecours' : classeDeCours.id }) }}">
+					Publier un nouveau cours
+				</a>
+
+				<div class="dropdown dropdown-card">
+					<a href="#" class="d-block dropdown-toggle" id="dropdownCard" data-bs-toggle="dropdown" aria-expanded="false">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" class="bi bi-three-dots-vertical" viewbox="0 0 16 16">
+							<path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+						</svg>
+					</a>
+					<ul class="dropdown-menu text-small" aria-labelledby="dropdownCard">
+						<li>
+							<a class="dropdown-item" href="{{ path('app_classedecours_editer', {'id_classedecours' : classeDeCours.id }) }}">Editer</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#" onclick="event.preventDefault(); confirm('Êtes-vous sûr(e) de vouloir supprimer cette classe de cours ?') && document.getElementById('js-classedecours-form-delete').submit();">Supprimer</a>
+						</li>
+						<li><hr class="dropdown-divider"></li>
+						<li>
+							<a class="dropdown-item" href="{{ path('app_cours_creer', {'id_classedecours' : classeDeCours.id }) }}">Nouveau cours</a>
+						</li>
+						<form action="{{ path('app_classedecours_supprimer', {'id_classedecours' : classeDeCours.id}) }}" method="POST" id="js-classedecours-form-delete" style="display: none;">
+							<input type="hidden" name="_method" value="DELETE">
+						</form>
+					</ul>
+				</div>
+
+			{% endif %}
+		</div>
+	</div>
+
+	<h3 class="my-2 fw-normal">Dernières publications</h3>
+
+
+	{% if (classeDeCours.cours|length) == 0 %}
+		Aucun cours publié dans pour le moment.
+		{% if is_granted('ROLE_ENSEIGNANT') and classeDeCours.enseignant == app.user  %}
+			<a href="{{ path('app_cours_creer', {'id_classedecours' : classeDeCours.id }) }}">
+				Créez-en un !
+			</a>
+		{% endif %}
+	{% else %}
+		{% for course in classeDeCours.cours|sort|reverse %}
+
+			<p class="small fst-normal">
+				<figcaption class="figure-caption text-dark">
+					Le
+					{{course.dateModification|date("d/m/Y à H:i:s")}}
+				</figcaption>
+			</p>
+
+			<div class="list-group">
+				<a href="{{ path('app_cours_consulter', { 'id_classedecours' : classeDeCours.id, 'id_cours' : course.id } ) }}" class="list-group-item list-group-item-action list-group-item-light text-dark">
+				{{course.enseignant.fullName}}
+					a publié un nouveau support de cours :
+					{{ course.titre|u.truncate(23, '...', true) }}
+					<svg class="float-end" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right" viewbox="0 0 16 16">
+						<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+					</svg>
+				</a>
+					{% if is_granted('ROLE_ENSEIGNANT') and app.user == classeDeCours.enseignant %}
+				<a href="{{ path('question_new', {'id_cours' : course.id } ) }}" class="list-group-item list-group-item-action list-group-item-light text-dark">+ Ajouter qcm</a>
+			{% endif %}
+			</div>
+
+		{% endfor %}
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title "Formations | Administration" %}
+
+{% block body %}
+<script type="text/javascript">
+    function searchFunc()
+    {
+        let filter = document.getElementById('search-input').value.toUpperCase();
+        let key = document.getElementById('key').value;
+        let table = document.getElementById('myTable');
+        let tr = table.getElementsByTagName('tr');
+
+        for (var i = 0; i < tr.length; i++)
+        {
+            j=document.getEl
+            let td = tr[i].getElementsByTagName('td')[key];
+
+ 
+
+            if (td) {
+                let textValue = td.textContent || td.innerHTML;
+
+ 
+
+                if (textValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+</script>
+<table class="tbl-ful">
+    <tr>
+        <td><b style="float:right">Search :</b></td>
+        <td>
+            <input onKeyup="searchFunc()" id="search-input" type="text" placeholder="Search...">
+           <b>Search By :</b>
+            <select id="key">
+                <option value="0">Formation</option>
+				<option value="1">Catégorie</option>
+               
+            </select>
+        </td>
+    </tr>
+</table>
+</div>
+<br>
+	<div class="table-responsive">
+	<caption>
+				Liste des formations
+				<a href="{{ path('admin_formation_creer') }}">
+					<img src="{{ asset('icons/plus.svg') }}" class="float-end" alt="Ajouter une formation">
+				</a>
+			</caption>
+		<table  id="myTable" class="table table-dark table-striped table-responsive-sm caption-top">
+			
+
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Formation</th>
+					<th scope="col">Catégorie</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{% for formation in formations %}
+					<tr>
+						<th scope="row">{{ formation.id }}</th>
+						<td>{{ formation.titre }}</td>
+						<td>{{ formation.categorie.designation }}</td>
+						<td>
+							{# Boutton d'édition d'une formation #}
+							<a class="text-decoration-none" href="{{ path('admin_formationn_editer', {'id' : formation.id}) }}">
+								<img src="{{ asset('icons/edit.svg') }}" alt="edit button">
+							</a>
+							{# end Boutton d'édition d'une formation #}
+
+							{# Boutton de suppression d'une formation #}
+							<a class="text-decoration-none ms-4" href="#" onclick="event.preventDefault(); confirm('Êtes-vous sûr(e) de vouloir supprimer cette formation ?') && document.getElementById('js-formation-form-delete{{formation.id}}').submit();">
+								<img src="{{ asset('icons/delete.svg') }}" alt="delete button">
+							</a>
+							{# formulaire caché pour supprimer une formation #}
+							<form action="{{ path('admin_formation_supprimer', {'id' : formation.id}) }}" method="POST" id="js-formation-form-delete{{formation.id}}" style="display: none;">
+
+								<input type="hidden" name="_method" value="DELETE">
+							</form>
+							{# end formulaire #}
+							{# Boutton de suppression d'une formation #}
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{% endblock %}

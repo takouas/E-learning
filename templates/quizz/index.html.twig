@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Quizz{% endblock %}
+
+{% block body %}
+
+    <section class="container" style="margin-top: 15px;">
+        {% if score|default %}
+            <div class="alert alert-dark" role="alert">
+                <h4 class="alert-heading text-center">Vous avez passé le QCM </h4>
+                <p class="text-center">Votre score est de : {{ score }}</p>
+            </div>
+        {% endif %}
+        {% if scoreTotal|default %}
+            {% for quizzScore in scoreTotal %}
+                <div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading text-center">Vous avez passé le QCM {{ quizzScore['cours'] }}</h4>
+                    <p class="text-center">Votre score est de : {{ quizzScore['score'] }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+      
+        </div>
+{% endblock %}

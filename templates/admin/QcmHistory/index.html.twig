@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Index historique{% endblock %}
+
+{% block body %}
+<script type="text/javascript">
+    function searchFunc()
+    {
+        let filter = document.getElementById('search-input').value.toUpperCase();
+        let key = document.getElementById('key').value;
+        let table = document.getElementById('myTable');
+        let tr = table.getElementsByTagName('tr');
+
+        for (var i = 0; i < tr.length; i++)
+        {
+            j=document.getEl
+            let td = tr[i].getElementsByTagName('td')[key];
+
+ 
+
+            if (td) {
+                let textValue = td.textContent || td.innerHTML;
+                if (textValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+  <h1>Index Historique</h1>
+<table  class="tbl-ful">
+    <tr>
+        <td><b style="float:right">Search :</b></td>
+        <td>
+            <input onKeyup="searchFunc()" id="search-input" type="text" placeholder="Search...">
+           <b>Search By :</b>
+            <select id="key">
+            	<option value="1">Utilisateur</option>
+                <option value="4">Cours</option>
+				<option value="5">Date</option>
+               
+            </select>
+        </td>
+    </tr>
+</table>
+  
+    <table  id="myTable" class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Utilisateur</th>
+                <th>Score</th>
+                <th>Nombre de questions</th>
+                <th>Cours</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for quizz in qcmHistory %}
+            <tr>
+                <td>{{ quizz.id }}</td>
+                <td>{{ quizz.user.email }}</td>
+                <td>{{ quizz.score }}</td>
+                <td>{{ quizz.numberOfQuestions }}</td>
+                <td>{{ quizz.cours }}</td>
+                <td>{{ quizz.datePassed }}</td>
+                   <td>
+                    <a href="{{ path('quizz_history', {'id': quizz.user.id}) }}" class="btn btn-dark">Voir</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,11 @@
+{{ form_start(formFormation) }}
+{{ form_row(formFormation.imageFile) }}
+{{ form_row(formFormation.titre) }}
+{{ form_row(formFormation.description) }}
+{{ form_row(formFormation.categorie) }}
+<div class="d-grid gap-2 mt-3">
+	<button class="btn btn-primary" type="submit">
+		{{ submitButtonText|default('Créer') }}
+	</button>
+</div>
+{{ form_end(formFormation) }}
