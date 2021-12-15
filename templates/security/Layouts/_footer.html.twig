@@ -1,0 +1,27 @@
+<footer class="d-flex flex-column justify-content-center align-items-center text-small mt-5">
+	{% if app.user %}
+		<ul class="nav list-footer">
+			<li>
+				<a class="text-decoration-none" href="{{ path("app_home") }}">Accueil</a>
+			</li>
+			<li class="mx-2">
+				&middot;
+			</li>
+			<li>
+				<a class="text-decoration-none" href="{{ path("app_contact") }}">Nous contacter</a>
+			</li>
+		</ul>
+	{% endif %}
+	<p class="mb-2">
+		&copy;
+		{{ 'now'|date('Y') }}
+		&middot; Université Tek-Up GLSI A 2021-2022
+	</p>
+</footer>
+
+
+{% block javascripts %}
+	<script src="{{ asset('js/jquery.js') }}"></script>
+	<script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+	<script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+{% endblock %}

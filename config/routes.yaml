@@ -1,0 +1,7 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+Projet-E-Learning:
+    path: /homeH
+    controller: App\Controller\Home\HomeHController::index

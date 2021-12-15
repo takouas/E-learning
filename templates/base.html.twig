@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+			{% include('layouts/partials/_stylesheet.html.twig') %}
+			<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+		{% endblock %}
+	</head>
+
+	<body class="flex flex-col justify-between items-center min-h-screen">
+
+		{% if app.user %}
+			{% include('layouts/partials/_nav.html.twig') %}
+			{% else %}
+			{% include('security/layouts/_nav.html.twig') %}
+		{% endif %}
+
+		<main class="container mb-auto mt-4"> {% block body %}{% endblock %}
+			</main>
+
+			{% include('layouts/partials/_footer.html.twig') %}
+			{{ include('@MercurySeriesFlashy/flashy.html.twig') }}
+
+		</body>
+	</html>

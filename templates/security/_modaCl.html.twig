@@ -1,0 +1,60 @@
+<form method="post">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Vous êtes ?</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body w-100">
+			<div class="d-grid gap-1 mx-auto">
+	<img class="mb-4 mx-auto d-block" src="{{ asset('img/tekup.jpg') }}" alt="tekup" width="250" height="150">
+
+	<h3 class="mb-3 fw-normal text-center">Connexion</h3>
+
+	{% if error %}
+		<div class="alert alert-danger text-center">
+			{{ error.messageKey|trans(error.messageData, 'security') }}
+		</div>
+	{% endif %}
+	{% for flashError in app.flashes('verify_email_error') %}
+		<div class="alert alert-danger text-center" role="alert">{{ flashError }}</div>
+	{% endfor %}
+
+	<label for="inputEmail" class="form-label">Email</label>
+	<input type="email" class="form-control" name="email" value="{{ last_username }}" id="inputEmail" required autofocus>
+
+	<label for="inputPassword">Mot de passe</label>
+	<input type="password" class="form-control" name="password" id="inputPassword" required>
+
+	<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+	<p class="my-1 text-end">
+		<small>
+			<a href="{{ path("app_forgot_password_request") }}">Mot de passe oublié ?</a>
+		</small>
+	</p>
+
+	<div class="d-grid gap-2 mt-3">
+		<button class="btn btn-primary" type="submit">
+			Connexion
+		</button>
+	</div>
+
+
+<!-- 	<p class="my-3 text-center">
+		<small>
+			Vous n'avez pas encore de compte ?
+			 lancer trigger modal 
+		<a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Créez-en un !</a>
+		</small>
+	</p>-->
+	</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+				</div>
+		</div>
+	</div>
+</div>
+</form>

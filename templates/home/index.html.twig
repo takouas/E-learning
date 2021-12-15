@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Accueil | Tek-Up" %}
+
+{% block body %}
+
+	{% if is_granted('ROLE_ENSEIGNANT') %}
+		<h3 class="mb-3 fw-normal">Mes classes de cours</h3>
+		{% if (app.user.classesDeCours|length) == 0 %}
+			<p classe="my-auto">
+				Vous n'avez pour le moment aucune classe de cours.
+				<a href="{{ path('app_classedecours_creer') }}">
+					Créez-en une !
+				</a>
+			</p>
+		{% else %}
+			<div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 g-4">
+				{% for classe in app.user.classesDeCours %}
+					{% include('home/_card.html.twig') %}
+				{% endfor %}
+			</div>
+
+		{% endif %}
+	{% else %}
+		<h3 class="mb-3 fw-normal">Classes de cours disponibles dans votre formation
+			{{ app.user.formation.titre}}
+		</h3>
+
+		{% if (app.user.formation.classeDeCours|length) == 0 %}
+			<p>Aucune classe de cours disponible dans votre formation pour le moment.</p>
+		{% else %}
+			<div class="row row-cols-1 row-cols-md-3 g-4">
+				{% for classe in app.user.formation.classeDeCours %}
+					{% include('home/_card.html.twig') %}
+				{% endfor %}
+			</div>
+		{% endif %}
+
+
+	{% endif %}
+{% endblock %}
