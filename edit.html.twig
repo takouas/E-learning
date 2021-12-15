@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit RegFormationOnline{% endblock %}
+
+{% block body %}
+    <h1>Edit RegFormationOnline</h1>
+
+    {{ include('reg_formation_online/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('reg_formation_online_index') }}">back to list</a>
+
+    {{ include('reg_formation_online/_delete_form.html.twig') }}
+{% endblock %}

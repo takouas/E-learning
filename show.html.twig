@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RegFormationOnline{% endblock %}
+
+{% block body %}
+    <h1>RegFormationOnline</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reg_formation_online.id }}</td>
+            </tr>
+            <tr>
+                <th>EmailEtudiant</th>
+                <td>{{ reg_formation_online.EmailEtudiant }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('reg_formation_online_index') }}">back to list</a>
+
+    <a href="{{ path('reg_formation_online_edit', {'id': reg_formation_online.id}) }}">edit</a>
+
+    {{ include('reg_formation_online/_delete_form.html.twig') }}
+{% endblock %}
