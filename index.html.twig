@@ -1,35 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}RegFormationOnline index{% endblock %}
+{% block title %}FormationEnLigne index{% endblock %}
 
 {% block body %}
-    <h1>RegFormationOnline index</h1>
+    <h1>FormationEnLigne index</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>EmailEtudiant</th>
+                <th>IdFormation</th>
+                <th>Titre</th>
+                <th>PasswordFormation</th>
+                <th>DateFormation</th>
+                <th>HeureFormation</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for reg_formation_online in reg_formation_onlines %}
+        {% for formation_en_ligne in formation_en_lignes %}
             <tr>
-                <td>{{ reg_formation_online.id }}</td>
-                <td>{{ reg_formation_online.EmailEtudiant }}</td>
+                <td>{{ formation_en_ligne.id }}</td>
+                <td>{{ formation_en_ligne.IdFormation }}</td>
+                <td>{{ formation_en_ligne.Titre }}</td>
+                <td>{{ formation_en_ligne.PasswordFormation }}</td>
+                <td>{{ formation_en_ligne.DateFormation ? formation_en_ligne.DateFormation|date('Y-m-d') : '' }}</td>
+                <td>{{ formation_en_ligne.HeureFormation ? formation_en_ligne.HeureFormation|date('H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('reg_formation_online_show', {'id': reg_formation_online.id}) }}">show</a>
-                    <a href="{{ path('reg_formation_online_edit', {'id': reg_formation_online.id}) }}">edit</a>
+                {% if is_granted('ROLE_ETUDIANT') %}
+   <a href="{{ path('formation_en_ligne_AjoutEtudiant', {'id': formation_en_ligne.id}) }}">Register</a>
+ 
+   {% endif %}
+    {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('formation_en_ligne_show', {'id': formation_en_ligne.id}) }}">show</a>
+                    <a href="{{ path('formation_en_ligne_edit', {'id': formation_en_ligne.id}) }}">edit</a>
+                      {% endif %}
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="7">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('reg_formation_online_new') }}">Create new</a>
+  {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('formation_en_ligne_new') }}">Create new</a>
+      {% endif %}
 {% endblock %}

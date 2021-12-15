@@ -1,26 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}RegFormationOnline{% endblock %}
+{% block title %}FormationEnLigne{% endblock %}
 
 {% block body %}
-    <h1>RegFormationOnline</h1>
+    <h1>FormationEnLigne</h1>
 
     <table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ reg_formation_online.id }}</td>
+                <td>{{ formation_en_ligne.id }}</td>
             </tr>
             <tr>
-                <th>EmailEtudiant</th>
-                <td>{{ reg_formation_online.EmailEtudiant }}</td>
+                <th>IdFormation</th>
+                <td>{{ formation_en_ligne.IdFormation }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ formation_en_ligne.Titre }}</td>
+            </tr>
+            <tr>
+                <th>PasswordFormation</th>
+                <td>{{ formation_en_ligne.PasswordFormation }}</td>
+            </tr>
+            <tr>
+                <th>DateFormation</th>
+                <td>{{ formation_en_ligne.DateFormation ? formation_en_ligne.DateFormation|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>HeureFormation</th>
+                <td>{{ formation_en_ligne.HeureFormation ? formation_en_ligne.HeureFormation|date('H:i:s') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('reg_formation_online_index') }}">back to list</a>
+    <a href="{{ path('formation_en_ligne_index') }}">back to list</a>
 
-    <a href="{{ path('reg_formation_online_edit', {'id': reg_formation_online.id}) }}">edit</a>
+    <a href="{{ path('formation_en_ligne_edit', {'id': formation_en_ligne.id}) }}">edit</a>
 
-    {{ include('reg_formation_online/_delete_form.html.twig') }}
+    {{ include('formation_en_ligne/_delete_form.html.twig') }}
 {% endblock %}

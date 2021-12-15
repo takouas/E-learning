@@ -1,4 +1,4 @@
-<form method="post" action="{{ path('reg_formation_online_delete', {'id': reg_formation_online.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ reg_formation_online.id) }}">
+<form method="post" action="{{ path('formation_en_ligne_delete', {'id': formation_en_ligne.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ formation_en_ligne.id) }}">
     <button class="btn">Delete</button>
 </form>
